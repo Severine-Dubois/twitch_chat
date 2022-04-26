@@ -1,3 +1,60 @@
 body, html {
     height: 100%;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.messages {
+    position: absolute;
+    inset: 0;
+    top: auto; /*last message will be on bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    overflow: hidden;
+    border : solid 2px purple;
+    background-color: rgba(255, 192, 203, 0.247);
+    box-shadow: 4px 4px 15px -1px #d1d6f1;
+    border-radius: 10px;
+    margin: 5px 10px;
+    padding: 1em;
+    animation: MessageIn .7s;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    color: var(--color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.badges {
+    display: flex;
+    align-items: center;
+}
+
+.badges img {
+    width: 1rem;
+    height: 1rem;
+    margin-right: .4rem;
+}
+
+.emote {
+    width: 1rem;
+    height: 1rem;
+    padding: 2px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+@keyframes MessageIn {
+    from {transform: translateY(30px); opacity: 0; max-height: 0px;}
+    to {transform: translateY(0); opacity: 1; max-height: 400px;}
 }

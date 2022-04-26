@@ -26,9 +26,9 @@ window.addEventListener('onEventReceived', function (obj) {
                                 "user-id": "100135110",
                                 "user-type": "mod"
                             },
-                            nick: "Phareohh", //channelName,
+                            nick: channelName,
                             userId: "100135110",
-                            displayName: "Phareohh", //channelName,
+                            displayName: channelName,
                             displayColor: "#5B99FF",
                             badges: [{
                                 type: "moderator",
@@ -41,7 +41,7 @@ window.addEventListener('onEventReceived', function (obj) {
                                 url: "https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3",
                                 description: "Verified"
                             }],
-                            channel: "Phareohh", //channelName,
+                            channel: channelName,
                             text: "Howdy! My name is Bill and I am here to serve Kappa",
                             isAction: !1,
                             emotes: [{
@@ -109,6 +109,13 @@ function addMessage(data, message) {
     </div>
         
     </div>`)
+
+    const messages = document.querySelectorAll('.message');
+    const messageCount = messages.length;
+    const limit = 20
+    if (messageCount > limit) {
+        Array.from(messages).slice(0, messageCount - limit).forEach((el) => el.remove());
+    }
 }
 
 document.body.addEventListener('click', () => {
@@ -121,3 +128,4 @@ document.body.addEventListener('click', () => {
         }
     }))
 })
+
