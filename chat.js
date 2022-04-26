@@ -91,7 +91,33 @@ window.addEventListener('onEventReceived', function (obj) {
 
 function addMessage(data, message) {
     // return an HTML element then inject it in the chat
-    tchat.insertAdjacentHTML('beforeend', `<div>
+
+    const color = data.displayColor || `#${md5(data.displayName).substr(26)}`;
+    //display the color of the user
+
+    const badges = data.badges.reduce((acc, badge) => acc + `<img src="${badge.url}" class="badge">`, '');
+    // display user's badges
+    // accumulator is a string ''
+
+    tchat.insertAdjacentHTML('beforeend', `<div id="message-${data.msgId}" data-sender="${data.userId}" class="message" style="--color: ${color}">
+    <div class="meta">
+        <div class="badges">${badges}</div>
+        <div class="name">${data.displayName}</div>
+    </div>
+    <div class="content">
         ${message}
+    </div>
+        
     </div>`)
 }
+
+document.body.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('onEventReceived', {
+        detail: {
+            event: {
+                field : 'testMessage',
+                listener : 'widget-button',
+            }
+        }
+    }))
+})
